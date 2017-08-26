@@ -6,12 +6,33 @@ variable "name" {}
 
 resource "aws_security_group" "rancher_sg" {
   name        = "${var.name}"
-  description = "Allow HTTP traffic"
+  description = "rancher sg"
   vpc_id      = "${var.vpc_id}"
 
   ingress {
     from_port   = 22
     to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 500
+    to_port     = 500
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 4500
+    to_port     = 4500
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 2376
+    to_port     = 2376
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
