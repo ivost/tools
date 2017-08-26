@@ -24,9 +24,9 @@ resource "aws_security_group" "allow_http" {
   }
 }
 
-resource "aws_instance" "app-server" {
-  ami                    = "ami-ea87a78f"
-  instance_type          = "t2.micro"
+resource "aws_instance" "rancher-2" {
+  ami                    = "ami-f5d7f195"
+  instance_type          = "t2.small"
   subnet_id              = "${var.subnet_id}"
   vpc_security_group_ids = ["${aws_security_group.allow_http.id}"]
 
